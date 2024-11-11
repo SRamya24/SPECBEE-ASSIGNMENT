@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Speaker Slider</title>
+  <style>
+    /* Basic styling for the layout */
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .slider-container {
+      position: relative;
+      width: 80%;
+      overflow: hidden;
+    }
+
+    .slider {
+      display: flex;
+      transition: transform 0.3s ease;
+    }
+
+    .speaker-card {
+      flex: 0 0 25%; /* Each card takes up 25% of the slider width */
+      padding: 20px;
+      box-sizing: border-box;
+      text-align: center;
+      cursor: pointer;
+      background-color: #f5f5f5;
+      margin: 0 10px;
+      border-radius: 10px;
+    }
+
+    .speaker-card img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+
+    .slider-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: #333;
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      font-size: 20px;
+      border-radius: 50%;
+    }
+
+    .slider-button.left {
+      left: 0;
+    }
+
+    .slider-button.right {
+      right: 0;
+    }
+
+  .modal {
+  display: none;
+  position: fixed;
+  top: 0; 
+  left: 0;
+  width: 100%;
+  height: auto; 
+  background-color: rgba(0, 0, 0, 0.6); 
+  justify-content: flex-start; 
+  align-items: flex-start; 
+  padding-top: 20px; 
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  margin: 0 auto;
+  width: 80%; /* Adjust the width to fit the screen */
+  max-width: 600px; /* Optional, maximum width for the modal */
+  border-radius: 8px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+  </style>
+</head>
+<body>
+
+  <h1>View our Featured Speakers for the Event</h1>
+  <p>Speakers are core contributors and industry thought leaders working at companies that push for innovation.</p>
+
+  <!-- Slider Container -->
+  <div class="slider-container">
+    <div class="slider">
+      <!-- Speaker Cards -->
+      <div class="speaker-card" onclick="openModal('John Doe', 'Chief Marketing Officer', 'Acme Corp' , 'speaker1.jpg')">
+        <img src="speaker1.jpg"  id="img1" alt="John Doe">
+        <h3>John Doe</h3>
+        <p>Chief Marketing Officer</p>
+        <p>Acme Corp</p>
+      </div>
+      <div class="speaker-card" onclick="openModal('John Doe', 'Chief Technical Officer', 'Tech Solutions', 'speaker2.jpg')">
+        <img src="speaker2.jpg" alt="John Doe">
+        <h3>John Doe</h3>
+        <p>Chief Technical Officer</p>
+        <p>Tech Solutions</p>
+      </div>
+      <div class="speaker-card" onclick="openModal('Ramya saminathan', 'Chief Marketing Officer', 'Acme Corp', 'speaker5.jpg')">
+        <img src="speaker5.jpg" alt="Ramya saminathan">
+        <h3>Ramya saminathan</h3>
+        <p>Chief Marketing Officer</p>
+        <p>Acme Corp</p>
+      </div>
+      <div class="speaker-card" onclick="openModal('John Doe', 'Chief Technical Officer', 'Tech Solutions','speaker4.jpg')">
+        <img src="speaker4.jpg" alt="John Doe">
+        <h3>John Doe</h3>
+        <p>Chief Technical Officer</p>
+        <p>Tech Solutions</p>
+      </div>
+      <!-- Add more cards here as needed -->
+    </div>
+    <!-- Slider Buttons -->
+    <button class="slider-button left" onclick="slideLeft()">‹</button>
+    <button class="slider-button right" onclick="slideRight()">›</button>
+  </div>
+
+  <!-- Modal Popup -->
+  <div class="modal" id="speakerModal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">✕</span>
+      <h3 id="modal-name">Speaker Name</h3>
+      <p id="modal-title">Job Title</p>
+      <p id="modal-company">Company</p>
+      <img src="speaker1.jpg" id="modelImg" style="width: 50px; height: 50px;" />
+    </div>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+
+    function slideLeft() {
+      if (currentSlide > 0) {
+        currentSlide--;
+        document.querySelector('.slider').style.transform = `translateX(-${currentSlide * 25}%)`;
+      }
+    }
+
+    function slideRight() {
+      const totalCards = document.querySelectorAll('.speaker-card').length;
+      if (currentSlide < totalCards - 1) {
+        currentSlide++;
+        document.querySelector('.slider').style.transform = `translateX(-${currentSlide * 25}%)`;
+      }
+    }
+
+    function openModal(name, title, company, img1, descriptionText) {
+      document.getElementById('modelImg').src = img1;
+      document.getElementById('modal-name').textContent = name;
+      document.getElementById('modal-title').textContent = title;
+      document.getElementById('modal-company').textContent = company;
+      document.getElementById('speakerModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('speakerModal').style.display = 'none';
+    }
+    
+  </script>
+</body>
+</html>
