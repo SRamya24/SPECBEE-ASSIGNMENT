@@ -41,3 +41,7 @@ Built with ARIA roles, keyboard navigation support, and other accessibility feat
   - CSS3 with SCSS: For styling and responsive design.
   - JavaScript (ES6): For interactivity and functionality.
 
+# Accessibility Features
+  - Keyboard Navigation: Users can navigate the slider and modal using Tab, Shift+Tab, and Enter.
+  - ARIA Roles: The modal includes aria-labelledby and aria-describedby attributes.
+  - Focus Management: Focus is trapped within the modal while it is open.
