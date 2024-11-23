@@ -32,7 +32,7 @@ Built with ARIA roles, keyboard navigation support, and other accessibility feat
 -npm start  
 
 # Usage
-  - Open the ValidateSpeaker.js file in your browser to view the Speaker Component.
+  - Open the validationSpeakers.js file in your browser to view the Speaker Component.
   - Navigate through the speaker slider.
   - Click on any speaker card to view detailed information in a popup.
  
